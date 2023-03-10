@@ -1,29 +1,38 @@
 <!DOCTYPE html>
-
 <html>
-
-<head> 
-    <a href = "index.html"> Home</a>
+  <head>
+    <title>About</title>
     <style>
-        div
-        {
-            background-color: lightblue;
-            width: 750px;
-            height: 500px;
-            padding: 50px;
-        }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+      img {
+        max-width: 100%
+      }
+      .image {
+        flex-basis: 40%
+      }
+      .text {
+        font-size: 20px;
+        padding-left: 20px;
+      }
     </style>
-
-</head>
-<h1 style = "text-align: center;">Sam Lovelace</h1>
-
-<div>
-    <img src="me.jpg" alt="Computer man 2" style= "vertical-align: text-top; width:300px;height:auto;">
-    <p>I received my Bachelors of Science in Aerospace Engineering from Florida Institute of Technology in 2022. I am currently a graduate student
-        at Florida Tech studying Aerospace Engineering with a focus in Control Systems. While my primary interests are in the field of robotics and controls, 
-        I have involved myself in projects which allow me to work on different aspects of aerospace engineering such as rocket propulsion and heat transfer. 
-        With some colleagues, I continue to perform research into developing a solid propellant propulsion system for small satellites.      
-    </p>
-</div>
-
+  </head>
+  <body>
+    <div class="container">
+      <div class="image">
+        <img src="me.jpg" alt="Computer man 2;">
+      </div>
+      <div class="text">
+        <p>I received my Bachelors of Science in Aerospace Engineering from Florida Institute of Technology in 2022. I am currently a graduate student
+            at Florida Tech studying Aerospace Engineering with a focus in Control Systems. While my primary interests are in the field of robotics and controls, 
+            I have involved myself in projects which allow me to work on different aspects of aerospace engineering such as rocket propulsion and heat transfer. 
+            With some colleagues, I continue to perform research into developing a solid propellant propulsion system for small satellites.      
+        </p>
+      </div>
+    </div>
+  </body>
 </html>
+
