@@ -164,7 +164,7 @@ img {
 
 .projects {
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
     url(imgs/earathrise.jpg);
   background-size: cover;
@@ -257,4 +257,61 @@ img {
 
 .sparcc-main h1 {
   color: white;
+}
+
+/* Neural Networks Page style */
+
+.neural-banner {
+  width: 100%;
+  height: 8vh;
+  /*background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url(imgs/sparcc.jpg);
+
+  image-rendering: -moz-crisp-edges;*/
+  background-color: rgba(47, 67, 50, 0.863);
+
+  background-size: cover;
+  background-position: center;
+}
+
+.blog-content {
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  justify-content: center;
+  text-align: left;
+  color: rgb(0, 0, 0);
+}
+
+.blog-content img {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.blog-content h2 {
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+
+.blog-content h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.blog-content p {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.blog-content pre {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
 }
