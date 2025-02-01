@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Video Stream</title>
+    <style>
+      /* Reset and Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background: #121212;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .video-container {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+        animation: glow 2s infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+        }
+        to {
+          box-shadow: 0px 0px 30px rgba(0, 255, 255, 0.8);
+        }
+      }
+
+      #videoStream {
+        width: 640px;
+        height: 480px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .status {
+        margin-top: 20px;
+        font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background: rgba(0, 255, 255, 0.2);
+        box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.5);
+      }
+
+      .status.online {
+        color: #00ff00;
+      }
+
+      .status.offline {
+        color: #ff3333;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Live WebCam Feed</h2>
+
+    <div class="video-container">
+      <img id="videoStream" width="640" height="480" />
+    </div>
+
+    <div id="status" class="status offline">Connecting...</div>
+
+    <script>
+      const ws = new WebSocket("ws://localhost:9002");
+      const imgElement = document.getElementById("videoStream");
+      const statusElement = document.getElementById("status");
+
+      ws.binaryType = "arraybuffer";
+
+      ws.onopen = () => {
+        console.log("Connected to WebSocket server");
+        statusElement.textContent = "Live Stream Online";
+        statusElement.classList.remove("offline");
+        statusElement.classList.add("online");
+      };
+
+      ws.onmessage = (event) => {
+        const blob = new Blob([event.data], { type: "image/jpeg" });
+
+        // Fix caching issues by revoking previous object URL
+        if (imgElement.src) {
+          URL.revokeObjectURL(imgElement.src);
+        }
+
+        imgElement.src = URL.createObjectURL(blob);
+      };
+
+      ws.onerror = (error) => {
+        console.error("WebSocket Error:", error);
+        statusElement.textContent = "Connection Error";
+        statusElement.classList.remove("online");
+        statusElement.classList.add("offline");
+      };
+
+      ws.onclose = () => {
+        console.warn("WebSocket Disconnected");
+        statusElement.textContent = "Live Stream Offline";
+        statusElement.classList.remove("online");
+        statusElement.classList.add("offline");
+      };
+    </script>
+  </body>
+</html>
